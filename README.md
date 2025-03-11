@@ -7,5 +7,7 @@
 - I am undertaking a degree in Computer Science, specialising Data Science
 - I am taking STATS 220 because it is a requirement for my course
 - I am interested in learning about how to interpret data and graphs
+- <a href="https://tenor.com/view/kitten-kittens-cute-pet-give-me-attention-gif-12816949"> This is the website i found my gif of </a>
 
 A meme that captures how I currently feel about my university studies is ![](https://c.tenor.com/9FVTXVpYPWUAAAAC/tenor.gif)
+
