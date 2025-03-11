@@ -9,5 +9,5 @@
 - I am interested in learning about how to interpret data and graphs
 - <a href="https://tenor.com/view/kitten-kittens-cute-pet-give-me-attention-gif-12816949"> This is the website i found my gif of </a>
 
-A meme that captures how I currently feel about my university studies is ![](https://c.tenor.com/9FVTXVpYPWUAAAAC/tenor.gif)
+A meme that captures how I currently feel about my university studies is ![](https://c.tenor.com/4hYxMM5JuogAAAAC/tenor.gif)
 
