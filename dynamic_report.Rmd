@@ -1,0 +1,88 @@
+---
+title: My dynamic report
+output: html_fragment
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo=FALSE, message=FALSE, warning=FALSE, error=FALSE)
+
+```
+
+```{css}
+@import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Didact+Gothic&family=Luckiest+Guy&display=swap');
+h1 {
+  font-family: 'Luckiest Guy';
+  background-color: #BCECAC;
+  padding: 10px 10px;
+  display: inline-block;
+}
+h2 {
+  background-color: #BCECAC;
+  font-family: 'Didact Gothic';
+  padding: 5px 1px;
+  display: inline-block;
+}
+body {
+  font-family: 'Didact Gothic';
+  font-size: 20px;
+}
+```
+
+## What are the body language tendencies for different ages and genders?
+
+Positive Gestural Hemispheric Tendency (PGHT) is the side a person will tend to use when experience positive feelings or emotions. For example, if a person's PGHT is right, they will tend to look to their right when retelling a positive memory.
+
+I have collected 28 responses over the week tracking different expressions of body language for varying ages and genders. I want to know if a certain gender or age group will lean towards a certain Positive Gestural Hemispheric Tendency.
+
+```{r}
+
+#==========================================================================
+library(tidyverse)
+logged_data <- read.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vTo6sW3JxZZDW4p_VaIO5nu8c6ewzvMjWxlAKhhlZ0G9pgl4nCMspSJze20D3_BW6xDbM5At4L12ys1/pub?output=csv")
+#==========================================================================
+
+
+#Initialising data=========================================================
+latest_data <- rename(logged_data, GenderOfPerson = Gender, Age = Age..estimation., PGHT = Positive.Gestural.Hemispheric.Tendency)
+
+mean_age <- mean(latest_data$Age, na.rm = TRUE)
+max_pght <- max(latest_data$PGHT, na.rm = TRUE)
+n_males <- length(latest_data$GenderOfPerson[latest_data$GenderOfPerson == "Male"])
+n_females <- length(latest_data$GenderOfPerson[latest_data$GenderOfPerson == "Female"])
+
+n_left <- length(latest_data$PGHT[latest_data$PGHT == "Left"])
+n_right <- length(latest_data$PGHT[latest_data$PGHT == "Right"])
+#==========================================================================
+
+
+#Calling summary dat=======================================================
+
+cat(paste("The average age in the dataset is", round(mean_age, 1), "years."))
+cat("\n")
+cat(paste("There are", n_left, "individuals with a 'Left' PGHT compared to the", n_right, "individuals with a 'right' PGHT, indicating a notable tendency in gestural behavior towards the right"))
+
+#==========================================================================
+
+
+
+#Bar Graphs=================================================================
+
+ggplot(latest_data, aes(x = PGHT, fill = GenderOfPerson)) + 
+  geom_bar(position = "dodge") +
+  labs(title = "PGHT Tendency by Gender", 
+       subtitle = "Side-by-side comparison", 
+       x = "Positive Gestural Hemispheric Tendency", 
+       y = "Count", 
+       caption = "Data from logged_data")
+
+ggplot(latest_data, aes(x = Age, fill = PGHT)) + 
+  geom_bar(position = "stack") +
+  labs(title = "PGHT Distribution by Age", 
+       subtitle = "Stacked tendencies across age groups", 
+       x = "Age", 
+       y = "Count", 
+       caption = "Source: logged_data")
+#==========================================================================
+
+```
